@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{dialogType}} Full Set Account</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addFullSetAccFormGroup" (ngSubmit)="onBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Title" formControlName="fullSetAccTitle" [value]="titleFullSetAcc" required>
+          <mat-error *ngIf="addFullSetAccFormGroup.controls['fullSetAccTitle'].hasError('required')">Title is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="fullSetAccDate"
+            [value]="dateFullSetAcc" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="addFullSetAccFormGroup.controls['fullSetAccDate'].hasError('required')">Date is required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!addFullSetAccFormGroup.valid">{{dialogType}}</button>
+      </div>
+    </div>
+  </form>
+
+</div>

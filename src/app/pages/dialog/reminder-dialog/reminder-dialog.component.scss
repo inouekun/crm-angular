@@ -1,0 +1,41 @@
+.comment-list {
+  margin-bottom: 20px;
+
+  .first-comment {
+    background-color: aliceblue;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .odd-comment {
+    background-color: aliceblue;
+    margin-top: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .even-comment {
+    background-color: lightgrey;
+    margin-top: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .comment-date{
+    margin-bottom: 10px;
+    color: darkgray;
+
+    .delete-btn {
+      cursor: pointer;
+      color: lightcoral!important;
+    }
+  }
+}
+
+.btn-row{
+  padding-bottom: 10px;
+}
+

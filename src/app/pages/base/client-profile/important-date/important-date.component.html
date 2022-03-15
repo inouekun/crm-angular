@@ -1,0 +1,52 @@
+<div class="container" fxLayout="column">
+  <div fxFlex fxLayout="row" fxLayoutAlign="start">
+    <p class="table-title"><b>Important Date Details</b></p>
+    <button mat-icon-button color="primary" matTooltip="Edit" (click)="onUpdateImportantDateClicked()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  <div fxFlex>
+    <form>
+      <div class="input-row" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="20px" fxLayoutGap.lt-lg="0px">
+        <mat-form-field fxFlex>
+          <input matInput type="datetime" placeholder="Date of Incorporation"
+            [value]="clientDetailsData.companyDetails.incorporationDate | date:'dd MMM yyyy'" readonly>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="datetime" placeholder="Date Year Ended"
+            [value]="clientDetailsData.companyDetails.annualYearEndDate | date:'dd MMM yyyy'" readonly>
+        </mat-form-field>
+      </div>
+      <div class="input-row" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="20px" fxLayoutGap.lt-lg="0px">
+        <mat-form-field fxFlex>
+          <input matInput type="datetime" placeholder="Date of AGM"
+            [value]="clientDetailsData.companyDetails.agmDate | date:'dd MMM yyyy'" readonly>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="datetime" placeholder="Date of Annual Return"
+            [value]="clientDetailsData.companyDetails.annualReturnsDate | date:'dd MMM yyyy'" readonly>
+        </mat-form-field>
+      </div>
+      <div class="input-row" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="20px" fxLayoutGap.lt-lg="0px">
+        <mat-form-field fxFlex>
+          <input matInput type="datetime" placeholder="AR Paid"
+            [value]="clientDetailsData.companyDetails.annualReturnsPaidDate | date:'dd MMM yyyy'" readonly>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="datetime" placeholder="AR Submitted"
+            [value]="clientDetailsData.companyDetails.annualReturnsSubmittedDate | date:'dd MMM yyyy'" readonly>
+        </mat-form-field>
+      </div>
+      <div class="input-row" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="20px" fxLayoutGap.lt-lg="0px">
+        <mat-form-field fxFlex>
+          <input matInput type="datetime" placeholder="FS Paid"
+            [value]="clientDetailsData.companyDetails.financialStatementsPaidDate | date:'dd MMM yyyy'" readonly>
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="datetime" placeholder="FS Submitted"
+            [value]="clientDetailsData.companyDetails.financialStatementsSubmittedDate | date:'dd MMM yyyy'" readonly>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>

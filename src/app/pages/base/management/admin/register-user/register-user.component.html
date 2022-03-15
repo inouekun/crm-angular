@@ -1,0 +1,92 @@
+<div class="main-content-container" fxLayout="column" fxLayoutWrap fxLayoutAlign="center" fxLayoutGap="20px">
+  <!-- <div fxFlex="10">
+    <p class="bread-crumb">Home &nbsp;&nbsp;/&nbsp;&nbsp; User Registration</p>
+  </div> -->
+  <div fxFlex class="mat-elevation-z3">
+    <form [formGroup]="userDetailsFormGroup" (ngSubmit)="onSubmitClicked()">
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+      <mat-horizontal-stepper formArrayName="formArray" linear #stepper class="stepper-container">
+        <mat-step formGroupName="0" [stepControl]="formArray.get([0])">
+
+          <ng-template matStepLabel>Fill out user's details</ng-template>
+          <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center none" fxLayoutGap="5px" class="form-width">
+            <div fxFlex>
+              <mat-form-field fxFill>
+                <input matInput name="fullname" id="fullname" placeholder="Full Name" formControlName="nameCtrl"
+                  required>
+              </mat-form-field>
+            </div>
+            <div fxFlex>
+              <mat-form-field fxFill>
+                <input matInput name="staffId" id="staffId" placeholder="Staff ID" formControlName="staffIdCtrl"
+                  required>
+              </mat-form-field>
+            </div>
+            <div fxFlex>
+              <mat-form-field fxFill>
+                <input matInput type="Email" name="staffEmail" id="staffEmail" placeholder="Staff Email"
+                  formControlName="staffEmailCtrl" required>
+              </mat-form-field>
+            </div>
+            <div fxFlex>
+              <mat-form-field fxFill>
+                <input matInput name="designation" id="designation" placeholder="Designation"
+                  formControlName="designationCtrl">
+              </mat-form-field>
+            </div>
+          </div>
+          <div>
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </mat-step>
+
+        <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
+          <ng-template matStepLabel>Fill out user's role</ng-template>
+          <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center" fxLayoutGap="5px" class="form-width">
+            <div fxFlex>
+              <mat-form-field fxFill>
+                <mat-label>Choose a department</mat-label>
+                <mat-select name="department" id="department" formControlName="departmentCtrl"
+                  (selectionChange)="changeRoleBasedOnDepartment($event.value)" required>
+                  <mat-option>--</mat-option>
+                  <mat-option value="Technical">Technical</mat-option>
+                  <mat-option value="Management">Management</mat-option>
+                  <mat-option value="Secretary">Secretary</mat-option>
+                  <mat-option value="Account">Account</mat-option>
+                  <mat-option value="Audit">Audit</mat-option>
+                  <mat-option value="Tax">Tax</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex>
+              <mat-form-field fxFill>
+                <mat-label>Choose a role</mat-label>
+                <mat-select name="role" id="role" formControlName="roleCtrl" required>
+                  <mat-option *ngFor="let role of roles" [value]="role.code">{{ role.name }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div>
+            <button mat-button matStepperPrevious type="button">Back</button>
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>Done</ng-template>
+          You are now done.
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+            <button mat-button type="submit">Register</button>
+          </div>
+        </mat-step>
+
+      </mat-horizontal-stepper>
+    </form>
+
+  </div>
+</div>

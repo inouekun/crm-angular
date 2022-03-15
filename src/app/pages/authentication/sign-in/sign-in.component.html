@@ -1,0 +1,43 @@
+<div class="container" fxLayout="column" fxLayoutWrap fxLayoutAlign="center center">
+
+  <mat-card class="sign-in-card center">
+    <mat-progress-bar *ngIf="loading" class="card-loading-bar" mode="indeterminate"></mat-progress-bar>
+    <mat-card-content>
+      <div>
+        <img mat-card-image src="/assets/images/sna_logo.png" alt="Logo of SNA">
+        <h3 class="sign-in-font">SIGN IN</h3>
+      </div>
+
+      <form [formGroup]="signInForm" (ngSubmit)="onLoginClicked()">
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Staff ID</mat-label>
+          <input matInput formControlName="staffId" autocomplete="off" required>
+          <mat-error *ngIf="signInForm.get('staffId').errors">You must enter a staff ID</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-field" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password" required>
+          <i matSuffix class="material-icons cursor-pointer"
+            (click)="showPassword = !showPassword">{{showPassword ? 'visibility' : 'visibility_off'}}</i>
+          <mat-error *ngIf="signInForm.get('password').errors">You must enter a password</mat-error>
+        </mat-form-field>
+
+        <p class="login-error" *ngIf="loginError">{{ loginError }}</p>
+
+        <div class="sign-in-div">
+          <button mat-raised-button class="sign-in-button" type="submit">SIGN IN</button>
+        </div>
+      </form>
+
+      <a class="forgot-password-link cursor-pointer" routerLink="/forgot-password" routerLinkActive="active">Forgot
+        Password</a>
+
+    </mat-card-content>
+  </mat-card>
+
+  <div class="license-sna">
+    <p>Licensed by Saniza & Associates<br>Powered by Syntronic Malaysia Sdn Bhd</p>
+  </div>
+
+</div>

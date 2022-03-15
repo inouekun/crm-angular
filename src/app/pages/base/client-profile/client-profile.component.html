@@ -1,0 +1,68 @@
+<div class="client-profile-container" fxLayout="column" fxLayoutWrap fxLayoutAlign="center none" fxLayoutGap="20px">
+
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="loading">
+    <mat-spinner class="loading-spinner"></mat-spinner>
+  </div>
+
+  <span class="mat-elevation-z4" *ngIf="!loading">
+    <div class="tabs-card-header">
+      <div class="input-row" fxLayoutGap="20px">
+        <span class="card-header-company-name">{{ clientDetailsData.name }}</span><br>
+        <span *ngIf="clientDetailsData.businessType != 'personal'" class="card-header-reg-no">Reg No:
+          {{ clientDetailsData.companyDetails.companyNo }}</span>
+        <span *ngIf="clientDetailsData.businessType == 'personal'" class="card-header-reg-no">IC No:
+          {{ clientDetailsData.personalDetails.icNo }}</span>
+      </div>
+    </div>
+
+    <div class="tabs-card-body" *ngIf="clientDetailsData.businessType == 'personal'">
+      <div fxLayout="column" fxFill>
+        <div class="input-row" fxLayoutGap="20px">
+
+          <mat-tab-group>
+            <mat-tab *ngFor="let tab of tabLabelPersonal" [label]="tab" [ngSwitch]="tab">
+              <ng-template matTabContent>
+                <app-personal-overview *ngSwitchCase="'Personal Overview'"></app-personal-overview>
+                <app-contact-details *ngSwitchCase="'Contact Details'"></app-contact-details>
+                <app-tax *ngSwitchCase="'Tax'" [clientId]='clientId'></app-tax>
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs-card-body" *ngIf="clientDetailsData.businessType != 'personal'">
+      <div fxLayout="column" fxFill>
+        <div class="input-row" fxLayoutGap="20px">
+
+          <mat-tab-group>
+            <mat-tab *ngFor="let tab of tabLabelCompany" [label]="tab" [ngSwitch]="tab">
+
+              <ng-template matTabContent>
+                <app-company-overview *ngSwitchCase="'Company Overview'"></app-company-overview>
+                <app-contact-details *ngSwitchCase="'Contact Details'"></app-contact-details>
+                <app-shareholders-directors *ngSwitchCase="'Shareholders & Directors Information'"
+                  [clientId]='clientId'>
+                </app-shareholders-directors>
+                <app-important-date *ngSwitchCase="'Important Date'" [clientId]='clientId'></app-important-date>
+                <app-resolutions *ngSwitchCase="'Resolutions'" [clientId]='clientId'></app-resolutions>
+                <app-memorandum *ngSwitchCase="'Nature of Business & Memorandum'" [clientId]='clientId'>
+                </app-memorandum>
+                <app-lodgement *ngSwitchCase="'Year of Lodgement'" [clientId]='clientId'></app-lodgement>
+                <app-documents *ngSwitchCase="'Full Set Documents'" [clientId]='clientId'></app-documents>
+                <app-account *ngSwitchCase="'Account'" [clientId]='clientId'></app-account>
+                <app-audit *ngSwitchCase="'Audit'" [clientId]='clientId'></app-audit>
+                <app-tax *ngSwitchCase="'Tax'" [clientId]='clientId'></app-tax>
+              </ng-template>
+            </mat-tab>
+          </mat-tab-group>
+
+        </div>
+      </div>
+    </div>
+
+  </span>
+
+</div>

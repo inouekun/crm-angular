@@ -1,0 +1,113 @@
+$blue: #5988d9;
+
+.base-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #eee;
+
+  .base-toolbar {
+    z-index: 2;
+    background-color: $blue;
+    color: #fff;
+    padding: 0 20px;
+    height: 55px;
+
+    .header-name {
+      font-weight: bold;
+      margin-left: 10px;
+      margin-right: 10px;
+      letter-spacing: 2px;
+    }
+
+    .header-title {
+      margin-left: 10px;
+    }
+
+    .toolbar-spacer {
+      flex: 1 1 auto;
+    }
+
+    .notification-icon {
+      margin-right: 20px;
+    }
+
+    .profile-icon-wrapper {
+      vertical-align: middle;
+
+      .profile-icon {
+        padding: 0;
+        min-width: 0;
+        width: 38px;
+        height: 38px;
+        flex-shrink: 0;
+        line-height: 40px;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  .main-container {
+    flex: 1;
+
+    .sidenav-menu-container {
+      width: 250px;
+      padding: 20px;
+
+      .menu-list {
+        height: 100%;
+        width: 100%;
+        overflow: hidden !important;
+
+        .menu-list-content {
+          width: 100%;
+
+          .active-menu-item {
+            background-color: $blue;
+            color: #fff;
+            border-radius: 5px;
+          }
+
+          .active-menu-item:hover {
+            background-color: $blue;
+          }
+
+          .menu-item-title {
+            padding-left: 20px;
+          }
+
+          .mat-list-item {
+            margin-bottom: 10px;
+            border-radius: 5px;
+          }
+
+          .mat-list-item:hover {
+            background-color: $blue;
+            color: #fff;
+          }
+        }
+      }
+
+      .menu-list-footer {
+        width: 100%;
+
+        .footer-text {
+          font-size: 12px;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .bread-crumb {
+      margin-top: 0px;
+      margin-bottom: 40px;
+      padding: 10px;
+      background-color: #E0E0E0
+    }
+  }
+}

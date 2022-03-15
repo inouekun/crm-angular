@@ -1,0 +1,57 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<h1 mat-dialog-title>{{dialogType}} document</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addDocumentFormGroup" *ngIf="data.type === 'Add'" (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <mat-label>Document Type</mat-label>
+          <mat-select formControlName="documentName" [(value)]="documentName" required>
+            <mat-option>None</mat-option>
+            <mat-option value="F24/ROA">F24/ROA</mat-option>
+            <mat-option value="F44/S46(3)">F44/S46(3)</mat-option>
+            <mat-option value="F49/S58">F49/S58</mat-option>
+            <mat-option value="F32A/ROM/S105">F32A/ROM/S105</mat-option>
+            <mat-option value="F9/Cert of Incorporation">F9/Cert of Incorporation</mat-option>
+            <mat-option value="FD2">FD2</mat-option>
+            <mat-option value="FD11">FD11</mat-option>
+            <mat-option value="FD13">FD13</mat-option>
+          </mat-select>
+          <mat-error *ngIf="addDocumentFormGroup.controls['documentName'].hasError('required')">Document Type is required.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex>
+        <span class="error-message" *ngIf="errorMessage && !fileUploaded">
+          <div>{{errorMessage.message}}</div>
+        </span>
+        <input type="file" accept=".pdf,.doc,.docx" name="document" (change)="onFileChange($event)">
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!addDocumentFormGroup.valid">Submit</button>
+      </div>
+
+    </div>
+  </form>
+
+  <form [formGroup]="editDocumentFormGroup" *ngIf="data.type === 'Edit'" (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Document Name" formControlName="documentName" [value]="data.element.documentType"
+            required>
+            <mat-error *ngIf="editDocumentFormGroup.controls['documentName'].hasError('required')">Document Name is required.</mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!editDocumentFormGroup.valid">Submit</button>
+      </div>
+    </div>
+  </form>
+
+</div>

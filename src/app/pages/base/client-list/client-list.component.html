@@ -1,0 +1,94 @@
+<!-- Client List for secretary -->
+<div class="container" fxLayout="column" fxLayoutWrap fxLayoutAlign="start" fxLayoutGap="20px">
+
+  <div fxFlex>
+
+    <mat-card class="mat-elevation-z2">
+      <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="client-list-header">
+          <div fxFlex>
+            <h3>LIST OF CLIENTS</h3>
+          </div>
+
+          <div fxFlex fxLayoutAlign="end">
+            <mat-form-field>
+              <input matInput placeholder="Search" class="search-input" (keyup)="onFilter($event.target.value)">
+            </mat-form-field>
+          </div>
+
+          <i class="material-icons filter-icon">filter_list</i>
+          <button mat-raised-button class="add-client-btn" (click)="onAddClientClicked()">ADD CLIENT</button>
+        </div>
+
+        <div class="spinner-container" *ngIf="loading" fxLayout="row" fxLayoutAlign="center center">
+          <mat-spinner></mat-spinner>
+        </div>
+
+        <table mat-table fxFill [dataSource]="dataSource" *ngIf="!loading" matSort (matSortChange)="onSort($event)">
+          <ng-container matColumnDef="name">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef [ngClass]="'mat-table-width-40'"> Name </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.name}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="'mat-table-width-20'">Type</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-chip-list>
+                <mat-chip *ngIf="element.businessType == 'personal'">Personal</mat-chip>
+                <mat-chip *ngIf="element.businessType == 'enterprise'" color="accent" selected>Enterprise
+                </mat-chip>
+                <mat-chip *ngIf="element.businessType == 'privateLimited'" color="primary" selected>Sdn Bhd
+                </mat-chip>
+              </mat-chip-list>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="'mat-table-width-20'">Email</th>
+            <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef [ngClass]="'mat-table-width-20'"> Action </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button matTooltip="View More">
+                <mat-icon (click)="viewClient(element.id)">visibility</mat-icon>
+              </button>
+              <button mat-icon-button matTooltip="Document Tracking">
+                <mat-icon (click)="onDocumentTrack(element.id)">folder_open</mat-icon>
+              </button>
+
+              <button mat-icon-button [matTooltip]="reminderTooltip[0]" [ngClass]="{
+                'reminder-0': reminder == 0,
+                'reminder-1': reminder == 1,
+                'reminder-2': reminder == 2,
+                'reminder-3': reminder == 3,
+                'reminder-4': reminder == 4
+              }" [disabled]="reminder == 0">
+                <mat-icon (click)="onReminder(element.id)" *ngIf="!reminder">outlined_flag</mat-icon>
+                <mat-icon (click)="onReminder(element.id)" *ngIf="reminder">flag</mat-icon>
+              </button>
+
+              <button mat-icon-button matTooltip="Delete">
+                <mat-icon (click)="onDeleteBtnClicked(element.id, element.name)">delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageIndex]="getClientsResponse.pageIndex" [length]="getClientsResponse.totalCount"
+          (page)="onPaginate($event)" [pageSize]="getClientsRequest.pageSize" [pageSizeOptions]="pageSizeOption"
+          showFirstLastButtons>
+        </mat-paginator>
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+</div>

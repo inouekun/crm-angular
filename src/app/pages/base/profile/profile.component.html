@@ -1,0 +1,57 @@
+<div class="profile-container" fxLayout="column" fxLayoutAlign="start stretch">
+
+  <!-- Profile card -->
+  <mat-card class="profile-card">
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="stretch">
+
+      <!-- Left side -->
+      <div class="profile-card-left-side" fxFlex="30">
+        <div fxLayout="column" fxLayoutAlign="start stretch">
+
+          <img [src]="defaultPic" *ngIf="!userPic" class="profile-picture">
+          <img [src]="userPic.image" *ngIf="userPic" class="profile-picture">
+
+          <div class="change-picture-button" fxLayoutAlign="center">
+            <button mat-raised-button color="primary" (click)="onChangePictureClicked()">Change picture</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="profile-card-left-side" fxFlex="70">
+        <div fxLayout="column" fxLayoutAlign="stretch">
+
+          <mat-form-field fxFill>
+            <input matInput placeholder="Full Name" [(ngModel)]="userData.name" [value]="userData.name" readonly>
+          </mat-form-field>
+
+          <mat-form-field fxFill>
+            <input matInput placeholder="Staff ID" [(ngModel)]="userData.staffId" [value]="userData.staffId" readonly>
+          </mat-form-field>
+
+          <mat-form-field fxFill>
+            <input matInput placeholder="Designation" [(ngModel)]="userData.designation" [value]="userData.designation"
+              readonly>
+          </mat-form-field>
+
+          <mat-form-field fxFill>
+            <input matInput placeholder="Email" [(ngModel)]="userData.email" [value]="userData.email" readonly>
+          </mat-form-field>
+
+          <mat-form-field fxFill>
+            <input matInput placeholder="Department" [(ngModel)]="departmentRoleDetails.department"
+              [value]="departmentRoleDetails.department" readonly>
+          </mat-form-field>
+
+          <mat-form-field fxFill>
+            <input matInput placeholder="Role" [(ngModel)]="departmentRoleDetails.roleName"
+              [value]="departmentRoleDetails.roleName" readonly>
+          </mat-form-field>
+
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+</div>

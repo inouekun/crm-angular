@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Update Nature of Business </h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="updateNatureBizFormGroup" (ngSubmit)="onUpdateBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <textarea matInput rows="3" placeholder="Nature of Business" formControlName="natureBiz" required></textarea>
+          <mat-error *ngIf="updateNatureBizFormGroup.controls['natureBiz'].hasError('required')">Nature of business
+            is required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary"
+          [disabled]="!updateNatureBizFormGroup.valid">Update</button>
+      </div>
+    </div>
+  </form>
+
+</div>

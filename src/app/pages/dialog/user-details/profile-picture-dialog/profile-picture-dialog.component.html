@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Upload new profile picture</h1>
+<div mat-dialog-content>
+
+  <div fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center">
+
+    <img [src]="data.defaultPic" *ngIf="!data.userPic && !pictureData.dataUrl" class="profile-picture">
+    <img [src]="data.userPic.image" *ngIf="data.userPic && !pictureData.dataUrl" class="profile-picture">
+    <img [src]="pictureData.dataUrl" *ngIf="pictureData.dataUrl" class="profile-picture">
+
+    <mat-error class="picture-format-error" *ngIf="pictureUploadStatus">
+      {{ pictureUploadStatus }}</mat-error>
+
+    <input hidden type="file" accept="image/*" #fileInput (change)="previewPicture(fileInput.files)">
+    <button mat-raised-button (click)="fileInput.click()">Upload picture</button>
+
+    <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+      <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+      <button mat-raised-button color="primary" [disabled]="!picturePath" (click)="onChangePicture()">Submit</button>
+    </div>
+
+  </div>
+</div>

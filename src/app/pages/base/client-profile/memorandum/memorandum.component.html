@@ -1,0 +1,68 @@
+<div class="container">
+  <div fxLayout="column" fxLayoutGap="20px">
+
+    <div fxFlex>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <p fxFlex class="table-title"><b>Constitution / Memorandum & Article of Association</b></p>
+        <button fxFlex="5" mat-raised-button color="primary" (click)="onAddMemorandumClicked()">Add</button>
+      </div>
+      <div class="mat-elevation-z1">
+        <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+        <table mat-table [dataSource]="memorandumsDataSource" matSort fxFill>
+
+          <ng-container matColumnDef="memorandumName">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.title}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="memorandumDate">
+            <th mat-header-cell mat-sort-header *matHeaderCellDef> Date Uploaded </th>
+            <td mat-cell *matCellDef="let element">
+              {{element.uploadDate | date:'medium'}}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="memorandumAction">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+              <!-- <button mat-icon-button matTooltip="Edit">
+                <mat-icon>edit</mat-icon>
+              </button> -->
+              <button mat-icon-button matTooltip="Delete" (click)="onDeleteMemorandumsClicked(element.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedMemorandumColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedMemorandumColumns;"></tr>
+
+        </table>
+        <span *ngIf="!memorandumsDataSource?.data?.length" fxLayout="row" fxLayoutAlign="center center">
+          <p>No record found.</p>
+        </span>
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+    </div>
+
+    <div fxFlex>
+      <div fxLayout="column">
+        <div fxLayout="row" fxLayoutAlign="start" fxFlex>
+          <p><b>Nature of Business</b></p>
+          <button mat-icon-button color="primary" matTooltip="Edit" (click)="onUpdateNatureBizClicked()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+        <div fxFlex>
+          <mat-form-field fxFill>
+            <textarea matInput rows="2" [value]="clientDetailsData.companyDetails.natureOfBusiness" readonly></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

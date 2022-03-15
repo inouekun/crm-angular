@@ -1,0 +1,41 @@
+<form [formGroup]="editUserFormGroup" (ngSubmit)="onEditUserClicked()">
+  <div mat-dialog-content fxLayout="column wrap" fxlayoutAlign="center">
+    <h3 class="center">Edit User Profile</h3>
+    <mat-form-field fxFill>
+      <input matInput placeholder="Staff ID" formControlName="staffidCtrl" [value]="userData.staffId">
+    </mat-form-field>
+    <mat-form-field fxFill>
+      <input matInput placeholder="Name" formControlName="nameCtrl" [value]="userData.name" required>
+    </mat-form-field>
+    <mat-form-field fxFill>
+      <input matInput placeholder="Email" formControlName="emailCtrl" [value]="userData.email" required>
+    </mat-form-field>
+    <mat-form-field fxFill>
+      <input matInput placeholder="Designation" formControlName="designationCtrl" [value]="userData.designation">
+    </mat-form-field>
+    <!-- <mat-form-field fxFill>
+      <mat-label>Choose a department</mat-label>
+      <mat-select name="department" id="department" formControlName="departmentCtrl"
+        (selectionChange)="changeRoleBasedOnDepartment($event.value)" required>
+        <mat-option>--</mat-option>
+        <mat-option value="Technical">Technical</mat-option>
+        <mat-option value="Management">Management</mat-option>
+        <mat-option value="Secretary">Secretary</mat-option>
+        <mat-option value="Account">Account</mat-option>
+        <mat-option value="Audit">Audit</mat-option>
+        <mat-option value="Tax">Tax</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFill>
+      <mat-label>Choose a role</mat-label>
+      <mat-select name="role" id="role" formControlName="roleCtrl" required>
+        <mat-option *ngFor="let role of roles" [value]="role.code">{{ role.name }}</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+    <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+    <button mat-raised-button type="submit" color="primary" [disabled]="editUserFormGroup.invalid">Submit</button>
+  </div>
+</form>

@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{dialogType}} Shareholder</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addShareholderFormGroup" (ngSubmit)="onBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Shareholder Name" formControlName="shareholderName" [value]="nameShareholder"
+            required>
+            <mat-error *ngIf="addShareholderFormGroup.controls['shareholderName'].hasError('required')">Shareholder Name is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <span matPrefix>RM &nbsp;</span>
+          <input matInput type="number" min="0" placeholder="Share Amount" formControlName="shareAmount"
+            [value]="amountShareholder" required>
+          <span matSuffix>.00</span>
+          <mat-error *ngIf="addShareholderFormGroup.controls['shareAmount'].hasError('required')">Share Amount is required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!addShareholderFormGroup.valid">{{dialogType}}</button>
+      </div>
+    </div>
+  </form>
+
+</div>

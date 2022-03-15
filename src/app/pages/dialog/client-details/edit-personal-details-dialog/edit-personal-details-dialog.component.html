@@ -1,0 +1,63 @@
+<h1 mat-dialog-title>Update Personal Details</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="UpdatePersonalDetailsFormGroup" (ngSubmit)="onUpdateBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+      <div fxFlex fxLayout="row" fxLayoutGap="30px">
+        <mat-form-field fxFlex>
+          <input matInput type="text" placeholder="Full Name" [value]="personalData.name" readonly />
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="text" placeholder="Type of Ownership Structure"
+            value="{{personalData.businessType | titlecase}}" readonly />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex fxLayout="row">
+        <mat-form-field fxFlex="47">
+          <input matInput type="text" placeholder="IC Number" [value]="personalData.personalDetails.icNo" readonly />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex class="address-title">
+        <label>Postal Address: </label>
+
+        <div fxLayout="row">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Line 1" formControlName="postAddrLine1Ctrl"
+              [value]="personalData.postalAddrLine1">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Line 2" formControlName="postAddrLine2Ctrl"
+              [value]="personalData.postalAddrLine2">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="City" formControlName="postAddrCityCtrl" [value]="personalData.postalAddrCity">
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Postcode" formControlName="postAddrPostcodeCtrl"
+              [value]="personalData.postalAddrPostCode">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex="48">
+            <input matInput placeholder="State" formControlName="postAddrStateCtrl"
+              [value]="personalData.postalAddrState">
+          </mat-form-field>
+          <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary">Update</button>
+      </div>
+
+    </div>
+  </form>
+
+</div>

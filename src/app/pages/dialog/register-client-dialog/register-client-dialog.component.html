@@ -1,0 +1,259 @@
+<h1 mat-dialog-title>Register New Client</h1>
+<div mat-dialog-content>
+  <div fxLayout="column" fxLayoutWrap fxLayoutAlign="center" fxLayoutGap="20px">
+    <!-- <div fxFlex="10">
+      <p class="bread-crumb">Home &nbsp;&nbsp;/&nbsp;&nbsp; User Registration</p>
+    </div> -->
+    <div fxFlex>
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+      <form [formGroup]="addClientFormGroup" (ngSubmit)="onAddClientClicked()">
+
+        <mat-vertical-stepper formArrayName="addClientFormArray" linear #stepper class="add-client-container">
+          <mat-step formGroupName="0" [stepControl]="addClientFormArray.get([0])">
+            <ng-template matStepLabel>Client Type</ng-template>
+            <div class="client-type-container" required>
+              <mat-radio-group aria-label="Select an option" formControlName="clientTypeCtrl" fxLayout="row"
+                fxLayoutWrap fxLayoutGap="20px" (change)="onChangeClientType($event)">
+                <mat-radio-button color="primary" value="personal">Personal</mat-radio-button>
+                <mat-radio-button color="primary" value="enterprise">Enterprise</mat-radio-button>
+                <mat-radio-button color="primary" value="privateLimited">Sdn Bhd</mat-radio-button>
+                <mat-error *ngIf="addClientFormArray.get([0]).controls['clientTypeCtrl'].hasError('required')">*
+                  required.
+                </mat-error>
+              </mat-radio-group>
+            </div>
+
+            <div>
+              <button mat-button type="button" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+
+          <mat-step *ngIf="addClientFormGroup.value.addClientFormArray[0].clientTypeCtrl == 'personal'"
+            formGroupName="1" [stepControl]="addClientFormArray.get([1])">
+            <ng-template matStepLabel>Personal Details</ng-template>
+            <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Full Name" formControlName="personalNameCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([1]).controls['personalNameCtrl'].hasError('required')">Full
+                  Name is
+                  required.</mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="IC No" formControlName="icNoCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([1]).controls['icNoCtrl'].hasError('required')">IC No
+                  is required.</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="address-title">
+              <label>Postal Address: </label>
+            </div>
+
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Line 1" formControlName="addrLine1Ctrl" required>
+                <mat-error *ngIf="addClientFormArray.get([1]).controls['addrLine1Ctrl'].hasError('required')">
+                  Postal Address Line 1 is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Line 2" formControlName="addrLine2Ctrl">
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+              <mat-form-field fxFlex>
+                <input matInput placeholder="City" formControlName="addrCityCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([1]).controls['addrCityCtrl'].hasError('required')">
+                  City is required.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Postcode" formControlName="addrPostcodeCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([1]).controls['addrPostcodeCtrl'].hasError('required')">
+                  Postcode is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex="48">
+                <input matInput placeholder="State" formControlName="addrStateCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([1]).controls['addrStateCtrl'].hasError('required')">
+                  State is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button type="button" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+
+          <mat-step *ngIf="addClientFormGroup.value.addClientFormArray[0].clientTypeCtrl != 'personal'"
+            formGroupName="2" [stepControl]="addClientFormArray.get([2])">
+            <ng-template matStepLabel>Company Details</ng-template>
+            <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Company Name" formControlName="companyNameCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([2]).controls['companyNameCtrl'].hasError('required')">Company
+                  name is
+                  required.</mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Company No" formControlName="companyNoCtrl">
+              </mat-form-field>
+            </div>
+
+            <div class="address-title">
+              <label>Postal Address: </label>
+            </div>
+
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Line 1" formControlName="postalAddrLine1Ctrl" required>
+                <mat-error *ngIf="addClientFormArray.get([2]).controls['postalAddrLine1Ctrl'].hasError('required')">
+                  Postal Address Line 1 is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Line 2" formControlName="postalAddrLine2Ctrl">
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+              <mat-form-field fxFlex>
+                <input matInput placeholder="City" formControlName="postalAddrCityCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([2]).controls['postalAddrCityCtrl'].hasError('required')">
+                  City is required.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Postcode" formControlName="postalAddrPostcodeCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([2]).controls['postalAddrPostcodeCtrl'].hasError('required')">
+                  Postcode is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex="48">
+                <input matInput placeholder="State" formControlName="postalAddrStateCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([2]).controls['postalAddrStateCtrl'].hasError('required')">
+                  State is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" class="address-title">
+              <p fxFlex>Business Address:</p>
+              <button fxFlex="27" type="button" mat-raised-button color="primary" (click)="onBtnCopyUndoClicked()">{{ btnCopyUndo }}</button>
+            </div>
+
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Line 1" formControlName="businessAddrLine1Ctrl" [value]="addrLine1" [readonly]="isDisabled" required>
+                <mat-error *ngIf="addClientFormArray.get([2]).controls['businessAddrLine1Ctrl'].hasError('required')">
+                  Business Address Line 1 is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Line 2" formControlName="businessAddrLine2Ctrl" [value]="addrLine2" [readonly]="isDisabled">
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+              <mat-form-field fxFlex>
+                <input matInput placeholder="City" formControlName="businessAddrCityCtrl" [value]="addrCity" [readonly]="isDisabled" required>
+                <mat-error *ngIf="addClientFormArray.get([2]).controls['businessAddrCityCtrl'].hasError('required')">
+                  City is required.
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Postcode" formControlName="businessAddrPostcodeCtrl" [value]="addrPostcode" [readonly]="isDisabled" required>
+                <mat-error
+                  *ngIf="addClientFormArray.get([2]).controls['businessAddrPostcodeCtrl'].hasError('required')">
+                  Postcode is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex="48">
+                <input matInput placeholder="State" formControlName="businessAddrStateCtrl" [value]="addrState" [readonly]="isDisabled" required>
+                <mat-error *ngIf="addClientFormArray.get([2]).controls['businessAddrStateCtrl'].hasError('required')">
+                  State is required.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button type="button" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+
+          <mat-step formGroupName="3" [stepControl]="addClientFormArray.get([3])">
+            <ng-template matStepLabel>Contact Person Details</ng-template>
+            <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Contact Person Name" formControlName="cntcPersonNameCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([3]).controls['cntcPersonNameCtrl'].hasError('required')">
+                  Contact
+                  Person Name is
+                  required.</mat-error>
+              </mat-form-field>
+              <mat-form-field fxFlex>
+                <input matInput placeholder="Contact No" formControlName="cntcNoCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([3]).controls['cntcNoCtrl'].hasError('required')">Contact No is
+                  required.</mat-error>
+                <mat-error *ngIf="addClientFormArray.get([3]).controls['cntcNoCtrl'].hasError('pattern')">Invalid phone number. Please enter digits without '-'.</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutWrap>
+              <mat-form-field fxFlex="48">
+                <input matInput placeholder="Email Address" formControlName="emailCtrl" required>
+                <mat-error *ngIf="addClientFormArray.get([3]).controls['emailCtrl'].hasError('required')">Email Address
+                  is
+                  required.</mat-error>
+                <mat-error *ngIf="addClientFormArray.get([3]).controls['emailCtrl'].hasError('email')">Invalid email
+                  format.
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button type="button" matStepperNext>Next</button>
+            </div>
+          </mat-step>
+
+          <!-- <mat-step formGroupName="4" [stepControl]="addClientFormArray.get([4])">
+            <ng-template matStepLabel>Services Subscription</ng-template>
+            <div fxLayout="row" fxLayoutWrap fxLayoutGap="40px" class="service-container">
+              <mat-checkbox color="primary" formControlName="sec" [disabled]="isDisabled"> Secretary</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="acc" [disabled]="isDisabled"> Account</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="audit" [disabled]="isDisabled"> Audit</mat-checkbox>
+              <mat-checkbox color="primary" formControlName="tax"> Tax</mat-checkbox>
+            </div>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button type="button" matStepperNext>Next</button>
+            </div>
+          </mat-step> -->
+
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+              <button mat-button type="submit">Register</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+
+      </form>
+    </div>
+
+  </div>
+</div>

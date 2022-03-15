@@ -1,0 +1,26 @@
+<div class="container" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="start">
+    <p><b>Contact Details</b></p>
+    <button mat-icon-button color="primary" matTooltip="Edit" (click)="onUpdateContactDetailsClicked()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </div>
+  <div>
+    <form>
+      <div class="input-row" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="30px" fxLayoutGap.lt-lg="0px">
+        <mat-form-field fxFlex>
+          <input matInput type="text" placeholder="Contact Person Name" [value]="clientDetailsData.contactPerson"
+            readonly />
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="text" placeholder="Email" [value]="clientDetailsData.email" readonly />
+        </mat-form-field>
+      </div>
+      <div fxLayout="row">
+        <mat-form-field fxFlex="48">
+          <input matInput type="text" placeholder="Contact Number" [value]="clientDetailsData.contactNo" readonly />
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+</div>

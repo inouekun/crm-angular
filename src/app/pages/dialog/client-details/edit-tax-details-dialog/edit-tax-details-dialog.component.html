@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Update Tax Details </h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="updateTaxDetailsFormGroup" (ngSubmit)="onUpdateBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Income Tax No" formControlName="incomeTaxNo">
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Employer No" formControlName="employerNo">
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput [matDatepicker]="pickerTaxSubmitDate" placeholder="Last Submission of Tax"
+            formControlName="taxSubmitDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerTaxSubmitDate"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTaxSubmitDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Tax Payer Information" formControlName="taxPayerInfo">
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary">Update</button>
+      </div>
+    </div>
+  </form>
+
+</div>

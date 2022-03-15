@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Add New Service Subscription</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addServiceFormGroup" (ngSubmit)="onAddServiceClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <mat-label>Service Subscription</mat-label>
+          <mat-select formControlName="serviceCtrl">
+            <mat-option value="account">Account</mat-option>
+            <mat-option value="audit">Audit</mat-option>
+            <mat-option value="tax">Tax</mat-option>
+          </mat-select>
+          <mat-error *ngIf="addServiceFormGroup.controls['serviceCtrl'].hasError('required')">Service subscription is required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!addServiceFormGroup.valid">ADD</button>
+      </div>
+    </div>
+  </form>
+
+</div>

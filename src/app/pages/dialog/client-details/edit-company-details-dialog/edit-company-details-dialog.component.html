@@ -1,0 +1,112 @@
+<h1 mat-dialog-title>Update Company Details</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="UpdateCompanyDetailsFormGroup" (ngSubmit)="onUpdateBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+      <div fxFlex fxLayout="row" fxLayoutGap="30px">
+        <mat-form-field fxFlex>
+          <input matInput type="text" placeholder="Company Name" [value]="companyData.name" readonly />
+        </mat-form-field>
+        <mat-form-field fxFlex>
+          <input matInput type="text" placeholder="Type of Ownership Structure"
+            *ngIf="companyData.businessType == 'privateLimited'" value="Sdn Bhd" readonly />
+          <input matInput type="text" placeholder="Type of Ownership Structure"
+            *ngIf="companyData.businessType != 'privateLimited'" value="{{companyData.businessType | titlecase}}"
+            readonly />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex fxLayout="row">
+        <mat-form-field fxFlex="47">
+          <input matInput type="text" placeholder="Company Registration Number" formControlName="companyNoCtrl" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex class="address-title">
+        <label>Business Address: </label>
+
+        <div fxLayout="row">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Line 1" formControlName="addrLine1Ctrl" required>
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['addrLine1Ctrl'].hasError('required')">Address line
+              1
+              is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Line 2" formControlName="addrLine2Ctrl">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="City" formControlName="addrCityCtrl" required>
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['addrCityCtrl'].hasError('required')">City
+              is required.</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Postcode" formControlName="addrPostcodeCtrl" required>
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['addrPostcodeCtrl'].hasError('required')">Postcode
+              is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex="48">
+            <input matInput placeholder="State" formControlName="addrStateCtrl" required>
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['addrStateCtrl'].hasError('required')">State
+              is required.</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div fxFlex class="address-title">
+        <label>Postal Address: </label>
+
+        <div fxLayout="row">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Line 1" formControlName="postAddrLine1Ctrl" required>
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['postAddrLine1Ctrl'].hasError('required')">Address
+              Line 1
+              is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Line 2" formControlName="postAddrLine2Ctrl">
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['postAddrLine2Ctrl'].hasError('required')">Address
+              Line 2
+              is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="30px">
+          <mat-form-field fxFlex>
+            <input matInput placeholder="City" formControlName="postAddrCityCtrl" required>
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['postAddrCityCtrl'].hasError('required')">City
+              is required.</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Postcode" formControlName="postAddrPostcodeCtrl" required>
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['postAddrPostcodeCtrl'].hasError('required')">
+              Postcode
+              is required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex="48">
+            <input matInput placeholder="State" formControlName="postAddrStateCtrl" required>
+            <mat-error *ngIf="UpdateCompanyDetailsFormGroup.controls['postAddrStateCtrl'].hasError('required')">State
+              is required.</mat-error>
+          </mat-form-field>
+          <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+        </div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary"
+          [disabled]="!UpdateCompanyDetailsFormGroup.valid">Update</button>
+      </div>
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,50 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<h1 mat-dialog-title>{{dialogType}} memorandum</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addMemorandumFormGroup" *ngIf="data.type === 'Add'" (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Memorandum Name" formControlName="memorandumName" required>
+          <mat-error *ngIf="addMemorandumFormGroup.controls['memorandumName'].hasError('required')">Memorandum name is
+            required.</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex>
+        <span class="error-message" *ngIf="errorMessage && !fileUploaded">
+          <div>{{errorMessage.message}}</div>
+        </span>
+        <input type="file" accept=".pdf,.doc,.docx" name="document" (change)="onFileChange($event)">
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button color="primary" type="submit"
+          [disabled]="!addMemorandumFormGroup.valid">Submit</button>
+      </div>
+
+    </div>
+  </form>
+
+  <form [formGroup]="editMemorandumFormGroup" *ngIf="data.type === 'Edit'" (ngSubmit)="onSubmit()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Memorandum Name" formControlName="memorandumName"
+            [value]="data.element.memorandumName" required>
+          <mat-error *ngIf="editMemorandumFormGroup.controls['memorandumName'].hasError('required')">Memorandum name is
+            required.</mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button color="primary" type="submit"
+          [disabled]="!editMemorandumFormGroup.valid">Submit</button>
+      </div>
+    </div>
+  </form>
+
+</div>

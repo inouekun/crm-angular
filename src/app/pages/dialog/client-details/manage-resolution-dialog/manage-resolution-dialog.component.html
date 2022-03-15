@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>{{dialogType}} Shareholder</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addResolutionFormGroup" (ngSubmit)="onBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Title" formControlName="resolutionTitle" [value]="titleResolution" required>
+          <mat-error *ngIf="addResolutionFormGroup.controls['resolutionTitle'].hasError('required')">Title is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="resolutionDate"
+            [value]="dateResolution" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="addResolutionFormGroup.controls['resolutionDate'].hasError('required')">Date is required.</mat-error>
+        </mat-form-field>
+
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!addResolutionFormGroup.valid">{{dialogType}}</button>
+      </div>
+    </div>
+  </form>
+
+</div>

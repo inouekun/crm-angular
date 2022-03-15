@@ -1,0 +1,72 @@
+<h1 mat-dialog-title>Update Important Date Details</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="updateImportantDateFormGroup" (ngSubmit)="onUpdateBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerIncorp" placeholder="Date of Incorporation"
+              formControlName="dateIncorp">
+            <mat-datepicker-toggle matSuffix [for]="pickerIncorp"></mat-datepicker-toggle>
+            <mat-datepicker #pickerIncorp></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerYearEnded" placeholder="Date Year Ended"
+              formControlName="dateYearEnded">
+            <mat-datepicker-toggle matSuffix [for]="pickerYearEnded"></mat-datepicker-toggle>
+            <mat-datepicker #pickerYearEnded></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerAgm" placeholder="Date of AGM" formControlName="dateAgm">
+            <mat-datepicker-toggle matSuffix [for]="pickerAgm"></mat-datepicker-toggle>
+            <mat-datepicker #pickerAgm></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerAnnRet" placeholder="Date of Annual Return"
+              formControlName="dateAnnRet">
+            <mat-datepicker-toggle matSuffix [for]="pickerAnnRet"></mat-datepicker-toggle>
+            <mat-datepicker #pickerAnnRet></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerArPaid" placeholder="AR Paid" formControlName="dateArPaid">
+            <mat-datepicker-toggle matSuffix [for]="pickerArPaid"></mat-datepicker-toggle>
+            <mat-datepicker #pickerArPaid></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerArSubmit" placeholder="AR Submitted" formControlName="dateArSubmit">
+            <mat-datepicker-toggle matSuffix [for]="pickerArSubmit"></mat-datepicker-toggle>
+            <mat-datepicker #pickerArSubmit></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row" fxLayoutGap="20px">
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerFsPaid" placeholder="FS Paid" formControlName="dateFsPaid">
+            <mat-datepicker-toggle matSuffix [for]="pickerFsPaid"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFsPaid></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput [matDatepicker]="pickerFsSubmit" placeholder="FS Submitted" formControlName="dateFsSubmit">
+            <mat-datepicker-toggle matSuffix [for]="pickerFsSubmit"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFsSubmit></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary">Update</button>
+      </div>
+    </div>
+  </form>
+
+</div>

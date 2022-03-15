@@ -1,0 +1,42 @@
+<div class="personal-details-container" fxLayout="column" fxLayoutGap="30px">
+  <div fxFlex>
+    <div fxLayout="row" fxLayoutAlign="start">
+      <p class="table-title"><b>Personal Details</b></p>
+      <button mat-icon-button color="primary" matTooltip="Edit" (click)="onUpdatePersonalDetailsClicked()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <div>
+      <form>
+        <div class="input-row" fxLayout="row" fxLayout.lt-lg="column" fxLayoutGap="30px" fxLayoutGap.lt-lg="0px">
+          <mat-form-field fxFlex>
+            <input matInput type="text" placeholder="Full Name" [value]="clientDetailsData?.name" readonly />
+          </mat-form-field>
+          <mat-form-field fxFlex>
+            <input matInput type="text" placeholder="IC Number"
+              [value]="clientDetailsData?.personalDetails?.icNo" readonly />
+          </mat-form-field>
+        </div>
+        <div class="input-row">
+          <mat-form-field fxFlex>
+            <input matInput *ngIf="clientDetailsData?.postalAddrLine2" type="text" placeholder="Postal Address"
+              value="{{clientDetailsData?.postalAddrLine1}}, {{clientDetailsData?.postalAddrLine2}}, {{clientDetailsData?.postalAddrCity}} {{clientDetailsData?.postalAddrPostCode}} {{clientDetailsData?.postalAddrState}}"
+              readonly />
+            <input matInput *ngIf="!clientDetailsData?.postalAddrLine2" type="text" placeholder="Postal Address"
+              value="{{clientDetailsData?.postalAddrLine1}}, {{clientDetailsData?.postalAddrCity}} {{clientDetailsData?.postalAddrPostCode}} {{clientDetailsData?.postalAddrState}}"
+              readonly />
+          </mat-form-field>
+        </div>
+        <div class="input-row" fxLayout="row" fxLayoutGap="20px" fxLayout.lt-lg="column" fxLayoutGap.lt-lg="10px">
+          <label id="company-type-label">Business Type: </label>
+          <mat-radio-group aria-labelledby="company-type-label" fxLayout="row" fxLayoutGap="20px"
+            fxLayout.lt-lg="column" fxLayoutGap.lt-lg="10px" [value]="clientDetailsData?.businessType" disabled>
+            <mat-radio-button value="personal">Personal</mat-radio-button>
+            <mat-radio-button value="enterprise">Enterprise</mat-radio-button>
+            <mat-radio-button value="privateLimited">Sdn Bhd</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

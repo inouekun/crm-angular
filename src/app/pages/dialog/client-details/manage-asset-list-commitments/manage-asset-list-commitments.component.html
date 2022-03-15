@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{dialogType}} Asset List Commitments</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addAssetListFormGroup" (ngSubmit)="onBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Title" formControlName="assetTitle" [value]="titleAsset" required>
+          <mat-error *ngIf="addAssetListFormGroup.controls['assetTitle'].hasError('required')">Title is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <span matPrefix>RM &nbsp;</span>
+          <input matInput type="number" min="0" placeholder="Value" formControlName="assetValue" [value]="valueAsset"
+            required>
+          <span matSuffix>.00</span>
+          <mat-error *ngIf="addAssetListFormGroup.controls['assetValue'].hasError('required')">Value is required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!addAssetListFormGroup.valid">{{dialogType}}</button>
+      </div>
+    </div>
+  </form>
+
+</div>

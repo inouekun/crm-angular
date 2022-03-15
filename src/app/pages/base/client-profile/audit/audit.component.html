@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutGap="20px" class="container">
+  <div fxFlex>
+    <div fxLayout="row" fxLayoutAlign="start">
+      <p class="table-title"><b>Audit Details</b></p>
+      <button mat-icon-button color="primary" matTooltip="Edit" (click)="onUpdateAuditDetailsClicked()" [disabled]="disabledEdit">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <div class="input-row">
+      <mat-form-field fxFlex>
+        <input matInput type="datetime" placeholder="Last Audited Report Date"
+          [value]="clientDetailsData.companyDetails.lastAuditedReportDate| date:'dd MMM yyyy'" readonly>
+      </mat-form-field>
+    </div>
+
+  </div>
+</div>

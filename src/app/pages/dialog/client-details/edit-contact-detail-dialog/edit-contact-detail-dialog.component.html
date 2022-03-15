@@ -1,0 +1,34 @@
+<h1 mat-dialog-title>Update Contact Details </h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="updateCntcDetailsFormGroup" (ngSubmit)="onUpdateBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Contact Person Name" formControlName="name" required>
+          <mat-error *ngIf="updateCntcDetailsFormGroup.controls['name'].hasError('required')">Name
+            is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput type="email" placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="updateCntcDetailsFormGroup.controls['email'].hasError('required')">Email
+            is required.</mat-error>
+          <mat-error *ngIf="updateCntcDetailsFormGroup.controls['email'].hasError('email')">Invalid email.</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput type="tel" placeholder="Contact Number" formControlName="cntcNo" required>
+          <mat-error *ngIf="updateCntcDetailsFormGroup.controls['cntcNo'].hasError('required')">Contact Number
+            is required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary"
+          [disabled]="!updateCntcDetailsFormGroup.valid">Update</button>
+      </div>
+    </div>
+  </form>
+
+</div>

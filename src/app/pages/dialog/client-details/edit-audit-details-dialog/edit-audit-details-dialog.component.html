@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Update Audit Details </h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="updateAuditDetailsFormGroup" (ngSubmit)="onUpdateBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput [matDatepicker]="pickerAudit" placeholder="Last Audited Report Date"
+            formControlName="auditReportDate">
+          <mat-datepicker-toggle matSuffix [for]="pickerAudit"></mat-datepicker-toggle>
+          <mat-datepicker #pickerAudit></mat-datepicker>
+          <mat-error *ngIf="updateAuditDetailsFormGroup.controls['auditReportDate'].hasError('required')">Last Audited
+            Report Date
+            is required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary"
+          [disabled]="!updateAuditDetailsFormGroup.valid">Update</button>
+      </div>
+    </div>
+  </form>
+
+</div>

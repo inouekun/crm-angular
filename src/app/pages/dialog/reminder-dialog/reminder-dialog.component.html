@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>{{ data.reminder }} </h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="reminderFormGroup" (ngSubmit)="onResolveBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <label for="">Comment(s):</label>
+        <mat-list role="list" class="comment-list">
+          <span *ngFor="let comment of commentList">
+            <mat-list-item role="listitem"
+              [ngClass]="{'first-comment': comment.id == 1, 'even-comment': comment.id%2 == 0, 'odd-comment': comment.id%2 == 1}"
+              class="animated bounceInUp faster">
+              {{ comment.text }}
+            </mat-list-item>
+            <small class="comment-date">{{ comment.date | date:'medium' }} &nbsp;
+              <span class="delete-btn" (click)="onDeleteClicked(comment.id)">Delete</span></small>
+          </span>
+        </mat-list>
+        <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+          <div fxFlex="80">
+            <mat-form-field fxFill>
+              <textarea matInput rows="3" placeholder="Comment(s)" formControlName="comment"></textarea>
+            </mat-form-field>
+          </div>
+          <div fxFlex="20">
+            <button mat-raised-button color="primary" type="button" (click)="addComment()"
+              [disabled]="reminderFormGroup.value.comment === ''">Add</button>
+          </div>
+        </div>
+
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px" class="btn-row">
+        <button mat-raised-button mat-dialog-close>Close</button>
+        <button mat-raised-button type="button" color="warn">Print</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!reminderFormGroup.valid">Resolve</button>
+      </div>
+    </div>
+  </form>
+
+</div>

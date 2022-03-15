@@ -1,0 +1,42 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+//Create custom font
+@import "~@angular/material/theming";
+$custom-typography: mat-typography-config(
+  $font-family: "Source Sans Pro, sans-serif"
+);
+
+@include mat-base-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+// @include mat-core($custom-typography);
+
+$blue: #5988d9;
+$dark-grey: #616161;
+$grey: #afafaf;
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.font-grey {
+  color: #616161;
+  opacity: 0.5;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.loading-spinner {
+  position: fixed !important;
+  top: 45% !important;
+}

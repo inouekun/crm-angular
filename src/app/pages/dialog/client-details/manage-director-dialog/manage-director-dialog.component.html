@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{dialogType}} Director</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addDirectorFormGroup" (ngSubmit)="onBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput placeholder="Director Name" formControlName="directorName" [value]="nameDirector" required>
+          <mat-error *ngIf="addDirectorFormGroup.controls['directorName'].hasError('required')">Director Name is required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!addDirectorFormGroup.valid">{{dialogType}}</button>
+      </div>
+    </div>
+  </form>
+
+</div>

@@ -1,0 +1,63 @@
+.container {
+  background-image: url("/assets/images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 700px;
+  height: 100vh;
+
+  .sign-in-card {
+    min-width: 250px;
+    width: 270px;
+    padding: 50px;
+    height: 360px;
+
+    .card-loading-bar {
+      position: absolute !important;
+      margin: -50px;
+    }
+
+    .sign-in-font {
+      color: #5988d9;
+      font-weight: normal;
+      letter-spacing: 1px;
+      margin-top: 0px;
+    }
+
+    .form-field {
+      width: 100%;
+    }
+
+    .sign-in-div {
+      padding: 30px 0 10px 0;
+
+      .sign-in-button {
+        background-color: #5988d9;
+        color: #fff;
+      }
+    }
+
+    .forgot-password-link {
+      text-decoration: none;
+      color: #616161;
+      opacity: 0.5;
+    }
+
+    .login-error {
+      margin: 0 0 -18px 0;
+      color: red;
+    }
+  }
+
+  .license-sna {
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sign-in-card {
+    min-width: 200px !important;
+    width: 215px !important;
+  }
+}

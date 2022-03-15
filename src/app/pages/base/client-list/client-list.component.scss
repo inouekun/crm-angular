@@ -1,0 +1,54 @@
+.container {
+  padding: 0 45px 45px 45px;
+  width: 100%;
+  min-width: 600px;
+
+  .client-list-header {
+    padding-left: 20px;
+
+    .search-input {
+      width: 150px;
+    }
+
+    .filter-icon {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .add-client-btn {
+      background-color: #5988d9;
+      color: #fff;
+      margin-left: 20px;
+    }
+  }
+
+  .mat-table-width-40 {
+    width: 40%
+  }
+
+  .mat-table-witdh-20 {
+    width: 20%
+  }
+
+  .reminder-0 {
+    color: black
+  }
+
+  .reminder-1 {
+    color: #FBC02D
+  }
+
+  .reminder-2 {
+    color: #FFA000
+  }
+
+  .reminder-3 {
+    color: #F57C00
+  }
+
+  .reminder-4 {
+    color: #E64A19
+  }
+  
+}
+

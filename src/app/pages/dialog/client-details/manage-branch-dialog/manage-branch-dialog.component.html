@@ -1,0 +1,59 @@
+<h1 mat-dialog-title>{{dialogType}} Branch</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="branchFormGroup" (ngSubmit)="onSubmitClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Branch Name" formControlName="name" required>
+            <mat-error *ngIf="branchFormGroup.controls['name'].hasError('required')">Branch Name is required.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Address Line 1" formControlName="branchAddressLine1" required>
+            <mat-error *ngIf="branchFormGroup.controls['branchAddressLine1'].hasError('required')">Address Line 1 is required.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Address Line 2" formControlName="branchAddressLine2">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="Postcode" formControlName="branchAddressPostCode" required>
+            <mat-error *ngIf="branchFormGroup.controls['branchAddressPostCode'].hasError('required')">Postcode is
+              required.</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="City" formControlName="branchAddressCity" required>
+            <mat-error *ngIf="branchFormGroup.controls['branchAddressCity'].hasError('required')">City is required.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutWrap>
+          <mat-form-field fxFlex>
+            <input matInput placeholder="State" formControlName="branchAddressState" required>
+            <mat-error *ngIf="branchFormGroup.controls['branchAddressState'].hasError('required')">State is required.
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!branchFormGroup.valid">{{dialogType}}</button>
+      </div>
+    </div>
+  </form>
+
+</div>

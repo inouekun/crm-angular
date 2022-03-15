@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>{{dialogType}} Lodgement Years</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="addLodgementFormGroup" (ngSubmit)="onBtnClicked()">
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <div fxFlex>
+        <mat-form-field fxFill>
+          <input matInput type="number" min="1970" max="9999" placeholder="Year of lodgement"
+            formControlName="lodgementYear" [value]="yearLodgement" required>
+          <mat-error
+            *ngIf="addLodgementFormGroup.controls['lodgementYear'].hasError('min') || addLodgementFormGroup.controls['lodgementYear'].hasError('max')">
+            Must be a valid year</mat-error>
+          <mat-error *ngIf="addLodgementFormGroup.controls['lodgementYear'].hasError('required')">Year of Lodgement is
+            required.</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput [matDatepicker]="endDatePicker" placeholder="Financial Year End Date"
+            formControlName="endDate" [value]="dateFinancialYearEnd" required>
+          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #endDatePicker></mat-datepicker>
+          <mat-error *ngIf="addLodgementFormGroup.controls['endDate'].hasError('required')">Financial Year End Date is
+              required.</mat-error>
+        </mat-form-field>
+        <mat-form-field fxFill>
+          <input matInput [matDatepicker]="annRetDatePicker" placeholder="Annual Return Date"
+            formControlName="annualReturnDate" [value]="dateAnnualReturn" required>
+          <mat-datepicker-toggle matSuffix [for]="annRetDatePicker"></mat-datepicker-toggle>
+          <mat-datepicker #annRetDatePicker></mat-datepicker>
+          <mat-error *ngIf="addLodgementFormGroup.controls['annualReturnDate'].hasError('required')">Annual Return Date is
+              required.</mat-error>
+        </mat-form-field>
+        <span class="error-msg" *ngIf="errorMessage">{{errorMessage.message}}</span>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end end" fxLayoutGap="10px">
+        <button mat-raised-button mat-dialog-close color="primary">Cancel</button>
+        <button mat-raised-button type="submit" color="primary" [disabled]="!addLodgementFormGroup.valid">{{dialogType}}</button>
+      </div>
+    </div>
+  </form>
+
+</div>

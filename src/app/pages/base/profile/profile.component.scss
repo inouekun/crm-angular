@@ -1,0 +1,32 @@
+.profile-container {
+  padding: 0 45px 45px 45px;
+  width: 1000px;
+
+  .profile-card {
+    padding: 20px;
+
+    .profile-card-left-side {
+      padding: 20px;
+
+      .profile-picture {
+        max-width: 100%;
+        border: 1px solid #949494;
+        // border-radius: 50%;
+      }
+
+      .change-picture-button {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .picture-format-error {
+        color: red;
+        font-size: 75%;
+      }
+    }
+
+    .profile-card-right-side {
+      padding: 20px;
+    }
+  }
+}

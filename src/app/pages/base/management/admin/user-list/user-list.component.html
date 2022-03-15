@@ -1,0 +1,58 @@
+<div class="user-list-container" fxLayout="column" fxLayoutWrap fxLayoutAlign="center" fxLayoutGap="20px">
+  <!-- <div fxFlex="10">
+    <p class="bread-crumb">Home &nbsp;&nbsp;/&nbsp;&nbsp; User List</p>
+  </div> -->
+  <div fxFlex class="flex-bottom">
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <div class="mat-elevation-z3">
+
+      <table mat-table [dataSource]="dataSource" matSort class="user-list-table">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{ i+1 }} </td>
+        </ng-container>
+
+        <!-- Staff ID Column -->
+        <ng-container matColumnDef="staffId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Staff ID. </th>
+          <td mat-cell *matCellDef="let element"> {{element.staffId}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Designation Column -->
+        <ng-container matColumnDef="designation">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Designation </th>
+          <td mat-cell *matCellDef="let element"> {{element.designation}} </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button><i class="material-icons" (click)="onEditUserClicked(element)">edit</i></button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons class="user-list-table-pagination">
+      </mat-paginator>
+    </div>
+
+  </div>
+</div>
